@@ -83,29 +83,28 @@ public class TransferTest {
     }
 
 
-
     @Test
     void shouldTransferZeroSumOnFirstCard() {
         val dataCardSecond = DataHelper.getSecondCard();
         val transferPage = dashboardPage.selectCard(numberFirstCard);
-        transferPage.moneyTransferFromCardToCard(dataCardSecond,0);
+        transferPage.moneyTransferFromCardToCard(dataCardSecond, 0);
         $(withText("Ваши карты")).shouldBe(visible);
-        int balanceAfterTransferFirstCard=dashboardPage.getBalanceCard(numberFirstCard);
-        int balanceAfterTransferSecondCard=dashboardPage.getBalanceCard(numberSecondCard);
-        assertEquals(10000,balanceAfterTransferFirstCard);
-        assertEquals(10000,balanceAfterTransferSecondCard);
+        int balanceAfterTransferFirstCard = dashboardPage.getBalanceCard(numberFirstCard);
+        int balanceAfterTransferSecondCard = dashboardPage.getBalanceCard(numberSecondCard);
+        assertEquals(10000, balanceAfterTransferFirstCard);
+        assertEquals(10000, balanceAfterTransferSecondCard);
     }
 
     @Test
     void shouldTransferZeroSumOnSecondCard() {
         val dataCardFirst = DataHelper.getFirstCard();
         val transferPage = dashboardPage.selectCard(numberSecondCard);
-        transferPage.moneyTransferFromCardToCard(dataCardFirst,0);
+        transferPage.moneyTransferFromCardToCard(dataCardFirst, 0);
         $(withText("Ваши карты")).shouldBe(visible);
-        int balanceAfterTransferFirstCard=dashboardPage.getBalanceCard(numberFirstCard);
-        int balanceAfterTransferSecondCard=dashboardPage.getBalanceCard(numberSecondCard);
-        assertEquals(10000,balanceAfterTransferFirstCard);
-        assertEquals(10000,balanceAfterTransferSecondCard);
+        int balanceAfterTransferFirstCard = dashboardPage.getBalanceCard(numberFirstCard);
+        int balanceAfterTransferSecondCard = dashboardPage.getBalanceCard(numberSecondCard);
+        assertEquals(10000, balanceAfterTransferFirstCard);
+        assertEquals(10000, balanceAfterTransferSecondCard);
     }
 
     //Тесты упадут, так как сервис пропускает суммы переводов более чем есть на счете
@@ -123,10 +122,9 @@ public class TransferTest {
     void shouldTransferMoreThanMaximumSumOnSecondCard() {
         val dataCardFirst = DataHelper.getFirstCard();
         val transferPage = dashboardPage.selectCard(numberSecondCard);
-        transferPage.moneyTransferFromCardToCard(dataCardFirst,11000);
+        transferPage.moneyTransferFromCardToCard(dataCardFirst, 11000);
         $(withText("Недостаточно средств для перевода!")).shouldBe(visible);
     }
-
 
 
 }
